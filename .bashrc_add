@@ -10,6 +10,17 @@ RED="\[\033[0;31m\]"
 VIOLET='\[\033[01;35m\]'
 DARK_GREY="\[\033[1;30m\]"
 
+
+# Determine active Python virtualenv details.
+function set_virtualenv () {
+  if test -z "$VIRTUAL_ENV" ; then
+      PYTHON_VIRTUALENV=""
+  else
+      PYTHON_VIRTUALENV="${VIOLET}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+  fi
+}
+
+
 function color_my_prompt {
   local __time_date="$DARK_GREY\D{%Y-%m-%d} \t"
   local __user_and_host="$LIGHT_GRAY\u$YELLOW@$GREEN\h $YELLOW\l"
@@ -30,8 +41,11 @@ function color_my_prompt {
       __git_branch_color="$CYAN"
   fi
 
+  # Set the PYTHON_VIRTUALENV variable.
+  set_virtualenv
+
   # Build the PS1 (Prompt String)
-  PS1="\n[$__time_date] $__user_and_host $__cur_location$__git_branch_color$__git_branch $__prompt_tail$__user_input_color "
+  PS1="\n[$__time_date] $__user_and_host ${PYTHON_VIRTUALENV} $__cur_location$__git_branch_color$__git_branch $__prompt_tail$__user_input_color "
 }
 
 # configure PROMPT_COMMAND which is executed each time before PS1
