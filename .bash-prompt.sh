@@ -52,12 +52,12 @@ function color_my_prompt {
 export PROMPT_COMMAND=color_my_prompt
 
 # if .git-prompt.sh exists, set options and execute it
-if [ -f $PWD/.git-prompt.sh ]; then
+if [ -f /home/bogdan/Repos/bash-prompt/.git-prompt.sh ]; then
   GIT_PS1_SHOWDIRTYSTATE=true
   GIT_PS1_SHOWSTASHSTATE=true
   GIT_PS1_SHOWUNTRACKEDFILES=true
   GIT_PS1_SHOWUPSTREAM="auto"
   GIT_PS1_HIDE_IF_PWD_IGNORED=true
   GIT_PS1_SHOWCOLORHINTS=true
-  . $PWD/.git-prompt.sh
+  . /home/bogdan/Repos/bash-prompt/.git-prompt.sh
 fi
